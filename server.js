@@ -7,7 +7,11 @@ const app = express();
 const server = http.createServer(app);
 
 // Enable CORS for the frontend
-app.use(cors());
+app.use(cors({
+  origin: 'https://group-chat-frontend-mu.vercel.app',  // Allow your Vercel frontend domain
+  methods: ['GET', 'POST'],  // Allow these HTTP methods
+  allowedHeaders: ['Content-Type'],  // Allow headers you expect
+}));
 
 // Initialize Socket.io with the server
 const io = new Server(server, {
