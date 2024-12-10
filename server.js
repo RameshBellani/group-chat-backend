@@ -8,17 +8,23 @@ const server = http.createServer(app);
 
 // Enable CORS for the frontend
 app.use(cors({
-  origin: 'https://group-chat-frontend-mu.vercel.app',  // Allow your Vercel frontend domain
-  methods: ['GET', 'POST'],  // Allow these HTTP methods
-  allowedHeaders: ['Content-Type'],  // Allow headers you expect
+  origin: [
+    'https://group-chat-frontend-mu.vercel.app',  // Old frontend domain
+    'https://group-chat-frontend-3sw1ymn2o-rameshbellanis-projects.vercel.app',  // New frontend domain
+  ],
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type'],
 }));
 
-// Initialize Socket.io with the server
-const io = new Server(server, {
+// Socket.IO configuration for CORS
+const io = socketIo(server, {
   cors: {
-    origin: "https://group-chat-frontend-mu.vercel.app/",  // Your frontend URL
-    methods: ["GET", "POST"],
-  },
+    origin: [
+      'https://group-chat-frontend-mu.vercel.app',  // Old frontend domain
+      'https://group-chat-frontend-3sw1ymn2o-rameshbellanis-projects.vercel.app',  // New frontend domain
+    ],
+    methods: ['GET', 'POST'],
+  }
 });
 
 // Store online users by room and chat history by room
