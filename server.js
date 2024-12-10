@@ -6,18 +6,18 @@ import { Server } from "socket.io";
 const app = express();
 const server = http.createServer(app);
 
-// Enable CORS for the frontend
+// Enable CORS for Express HTTP routes
 app.use(cors({
-  origin: 'https://group-chat-frontend-mu.vercel.app/',
+  origin: 'https://group-chat-frontend-mu.vercel.app', // No trailing slash
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
 
-// Socket.IO configuration for CORS
+// Configure Socket.IO to allow requests from the frontend
 const io = new Server(server, {
   cors: {
-    origin: 'https://group-chat-frontend-mu.vercel.app/',
-    methods: ["GET", "POST"],
+    origin: 'https://group-chat-frontend-mu.vercel.app', // No trailing slash
+    methods: ['GET', 'POST'],
   },
 });
 
