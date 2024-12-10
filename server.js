@@ -8,10 +8,7 @@ const server = http.createServer(app);
 
 // Enable CORS for the frontend
 app.use(cors({
-  origin: [
-    'https://group-chat-frontend-mu.vercel.app/',  // Old frontend domain
-    'https://group-chat-frontend-3sw1ymn2o-rameshbellanis-projects.vercel.app',  // New frontend domain
-  ],
+  origin: 'https://group-chat-frontend-mu.vercel.app/',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type'],
 }));
@@ -19,10 +16,7 @@ app.use(cors({
 // Socket.IO configuration for CORS
 const io = new Server(server, {
   cors: {
-    origin: [
-    'https://group-chat-frontend-mu.vercel.app/',  // Old frontend domain
-    'https://group-chat-frontend-3sw1ymn2o-rameshbellanis-projects.vercel.app',  // New frontend domain
-  ],  // Your frontend URL
+    origin: 'https://group-chat-frontend-mu.vercel.app/',
     methods: ["GET", "POST"],
   },
 });
